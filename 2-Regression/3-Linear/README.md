@@ -243,6 +243,35 @@ Using Polynomial Regression, we can get slightly lower MSE and higher determinat
 
 > You can see that the minimal pumpkin prices are observed somewhere around Halloween. How can you explain this? 
 
+(I Used the code above for polynomial regression but I obtained a different figure. Any suggestions?)
+This is the code i used. Thr figure is uploaded in the images folder
+#Introducing polinomial variables
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+#let's build the pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+poly = PolynomialFeatures(degree=2, include_bias=False)
+
+X_train_new = poly.fit_transform(X_train)
+X_test_new = poly.fit_transform(X_test)
+
+
+model_poly = LinearRegression()
+model_poly.fit(X_train_new, y_train)
+
+y_pred_poly = model_poly.predict(X_test_new)
+
+print(model_poly.coef_)
+
+#y_pred_poly
+
+plt.figure()
+plt.plot(X_test, y_pred_poly)
+
 🎃 Congratulations, you just created a model that can help predict the price of pie pumpkins. You can probably repeat the same procedure for all pumpkin types, but that would be tedious. Let's learn now how to take pumpkin variety into account in our model!
 
 ## Categorical Features
